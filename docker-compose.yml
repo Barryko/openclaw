@@ -1,6 +1,8 @@
 services:
   openclaw-gateway:
     image: ${OPENCLAW_IMAGE:-openclaw:local}
+    env_file:
+      - .env
     environment:
       HOME: /home/node
       TERM: xterm-256color
@@ -75,6 +77,8 @@ services:
       - NET_ADMIN
     security_opt:
       - no-new-privileges:true
+    env_file:
+      - .env
     environment:
       HOME: /home/node
       TERM: xterm-256color
