@@ -65,6 +65,8 @@ if not isinstance(auth, dict):
 token = auth.get("token")
 if isinstance(token, str):
     token = token.strip()
+    if "OPENCLAW_GATEWAY_TOKEN" in token:
+        raise SystemExit(0)
     if token:
         print(token)
 PY
