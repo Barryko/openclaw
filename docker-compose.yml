@@ -4,7 +4,7 @@ services:
     build: .
     env_file:
       - path: .env
-        required: false
+        required: true
     environment:
       HOME: /home/node
       OPENCLAW_HOME: /home/node
@@ -94,7 +94,7 @@ services:
     network_mode: "service:openclaw-gateway"
     env_file:
       - path: .env
-        required: false
+        required: true
     cap_drop:
       - NET_RAW
       - NET_ADMIN
