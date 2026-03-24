@@ -25,7 +25,7 @@ export OPENCLAW_DOCKER_APT_PACKAGES="git python3 wget curl"
 export OPENCLAW_INSTALL_BROWSER=1
 
 # 1. Load and export all variables in .env
-if [ -f .env ]; then
+if [ -f my.env ]; then
   set -a
   source my.env
   set +a
