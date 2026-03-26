@@ -21,7 +21,7 @@ export OPENCLAW_HOME_VOLUME=openclaw-home
 # }
 # EOF
 
-export OPENCLAW_DOCKER_APT_PACKAGES="git python3 wget curl"
+export OPENCLAW_DOCKER_APT_PACKAGES="git gh python3 wget curl"
 export OPENCLAW_INSTALL_BROWSER=1
 
 # 1. Load and export all variables in .env
