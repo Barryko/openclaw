@@ -1,0 +1,6 @@
+interface:
+  display_name: "ComfyUI Messenger"
+  short_description: "Generate ComfyUI images and return them in chat"
+  default_prompt: "Use $comfyui-messenger to render a ComfyUI image from this prompt."
+policy:
+  allow_implicit_invocation: true
