@@ -1,0 +1,228 @@
+{
+  "9": {
+    "inputs": {
+      "filename_prefix": "z-image-turbo",
+      "images": [
+        "70:43",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "儲存圖片"
+    }
+  },
+  "56": {
+    "inputs": {
+      "images": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "預覽圖片"
+    }
+  },
+  "57": {
+    "inputs": {
+      "low_threshold": 0.74,
+      "high_threshold": 0.8,
+      "image": [
+        "58",
+        0
+      ]
+    },
+    "class_type": "Canny",
+    "_meta": {
+      "title": "Canny"
+    }
+  },
+  "58": {
+    "inputs": {
+      "image": "S__63176782.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "載入圖片"
+    }
+  },
+  "70:46": {
+    "inputs": {
+      "unet_name": "z_image_turbo_bf16.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "載入擴散模型"
+    }
+  },
+  "70:40": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "載入 VAE"
+    }
+  },
+  "70:64": {
+    "inputs": {
+      "name": "Z-Image-Turbo-Fun-Controlnet-Union.safetensors"
+    },
+    "class_type": "ModelPatchLoader",
+    "_meta": {
+      "title": "模型修補載入器"
+    }
+  },
+  "70:60": {
+    "inputs": {
+      "strength": 1,
+      "model": [
+        "70:46",
+        0
+      ],
+      "model_patch": [
+        "70:64",
+        0
+      ],
+      "vae": [
+        "70:40",
+        0
+      ],
+      "image": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "QwenImageDiffsynthControlnet",
+    "_meta": {
+      "title": "QwenImageDiffsynthControlnet"
+    }
+  },
+  "70:41": {
+    "inputs": {
+      "width": [
+        "70:69",
+        0
+      ],
+      "height": [
+        "70:69",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "70:69": {
+    "inputs": {
+      "image": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "GetImageSize",
+    "_meta": {
+      "title": "取得圖片尺寸"
+    }
+  },
+  "70:39": {
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "lumina2",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "載入 CLIP"
+    }
+  },
+  "70:44": {
+    "inputs": {
+      "seed": 711801647809058,
+      "steps": 9,
+      "cfg": 1,
+      "sampler_name": "res_multistep",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "70:47",
+        0
+      ],
+      "positive": [
+        "70:45",
+        0
+      ],
+      "negative": [
+        "70:72",
+        0
+      ],
+      "latent_image": [
+        "70:41",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "70:43": {
+    "inputs": {
+      "samples": [
+        "70:44",
+        0
+      ],
+      "vae": [
+        "70:40",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE 解碼"
+    }
+  },
+  "70:47": {
+    "inputs": {
+      "shift": 3,
+      "model": [
+        "70:60",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "模型取樣 AuraFlow"
+    }
+  },
+  "70:72": {
+    "inputs": {
+      "text": "text, numbers, letters, words, digits, watermark, grainy, low resolution, 3d render, realistic fur, messy shadows, gradients, dark colors, blurry lines, signature.",
+      "clip": [
+        "70:39",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP 文字編碼（提示詞）"
+    }
+  },
+  "70:45": {
+    "inputs": {
+      "text": "(Flat vector coloring style:1.4), clean marker illustration, simple vibrant color palette, bold ink outlines, white background. [1] Top-Left: Red octopus with a white hachimaki headband, holding a dark grey takoyaki tray. [2] Top-Right: A white Kitsune fox with red-tipped ears and a bright red neckerchief, styled like a Japanese Anbu mask. [3] Bottom-Left: A black and white panda eating a dango stick in a light blue hot spring. [4] Bottom-Right: A light brown deer with tiny white spots. (Minimalist aesthetic:1.2), solid colors suitable for T-shirt printing, (strictly no text, no numbers:1.5).",
+      "clip": [
+        "70:39",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP 文字編碼（提示詞）"
+    }
+  }
+}
